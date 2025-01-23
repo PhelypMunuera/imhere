@@ -1,4 +1,5 @@
 import { styles } from './styles';
+import React, { useState } from 'react';
 import { Participant } from '../../components/Participant';
 import {
   Text,
@@ -10,22 +11,16 @@ import {
 } from 'react-native';
 
 export function Home() {
-  const technologys = [
-    'Texto',
-    'Estilização',
-    'Input',
-    'Butão',
-    'Alert',
-    'Componentização',
-    'Tipagens de elementos com TS',
-    'Propriedades',
-    'ScrolView',
-    'FlatListe',
-    'StatusBar',
-  ];
+  const [technologys, setTechnologys] = useState<string[]>([]);
+  const [technologyNew, setTechnologyNew] = useState('');
 
   function handleParticipanAdd() {
-    console.log('Você clicou no botão de adicionar');
+    if (technologys.includes(technologyNew)) {
+      return Alert.alert('Tecnologia já aprendida');
+    }
+
+    setTechnologys((prevState) => [...prevState, technologyNew]);
+    setTechnologyNew('');
   }
 
   function handleTechnologyRemove(technologys: string) {
@@ -54,6 +49,9 @@ export function Home() {
           style={styles.input}
           placeholder="Adicione uma tecnologia"
           placeholderTextColor={'#6b6b6b'}
+          onChangeText={(text) => setTechnologyNew(text)}
+          value={technologyNew}
+          //{setTechnologyNew} -> poderia abreviar para essa forma
         />
 
         <TouchableOpacity style={styles.button} onPress={handleParticipanAdd}>
@@ -90,3 +88,17 @@ export function Home() {
 //       <Text>Phelyp Munuera</Text>
 //    </View>
 // </Fragment>
+
+// 'Texto',
+//     'Estilização',
+//     'Input',
+//     'Butão',
+//     'Alert',
+//     'Componentização',
+//     'Tipagens de elementos com TS',
+//     'Propriedades',
+//     'ScrolView',
+//     'FlatListe',
+//     'StatusBar',
+//     'useState',
+//     'Imutabilidade de Componentes',
