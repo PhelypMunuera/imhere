@@ -49,9 +49,10 @@ export function Home() {
           style={styles.input}
           placeholder="Adicione uma tecnologia"
           placeholderTextColor={'#6b6b6b'}
-          onChangeText={(text) => setTechnologyNew(text)}
-          value={technologyNew}
+          onChangeText={setTechnologyNew}
+          //onChangeText={(text) => setTechnologyNew(text)}
           //{setTechnologyNew} -> poderia abreviar para essa forma
+          value={technologyNew}
         />
 
         <TouchableOpacity style={styles.button} onPress={handleParticipanAdd}>
