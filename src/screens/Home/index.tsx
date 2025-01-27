@@ -23,14 +23,18 @@ export function Home() {
     setTechnologyNew('');
   }
 
-  function handleTechnologyRemove(technologys: string) {
+  function handleTechnologyRemove(technology: string) {
+    //
     Alert.alert(
       'Remover Tecnologia',
-      `Deseja remover a tecnologia ${technologys}?`,
+      `Deseja remover a tecnologia ${technology}?`,
       [
         {
           text: 'Sim',
-          onPress: () => Alert.alert('Deletada'),
+          onPress: () =>
+            setTechnologys((prevState) =>
+              prevState.filter((technologys) => technologys !== technology)
+            ),
         },
         {
           text: 'Não',
@@ -50,8 +54,7 @@ export function Home() {
           placeholder="Adicione uma tecnologia"
           placeholderTextColor={'#6b6b6b'}
           onChangeText={setTechnologyNew}
-          //onChangeText={(text) => setTechnologyNew(text)}
-          //{setTechnologyNew} -> poderia abreviar para essa forma
+          //onChangeText={(text) => setTechnologyNew(text)} -> poderia escrever assim
           value={technologyNew}
         />
 
